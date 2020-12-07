@@ -7,5 +7,8 @@ const app = express();
 // Path to localhost
 app.use(express.static(path.join(__dirname, "client")));
 
+const keys = webpush.generateVAPIDKeys();
+console.log(JSON.stringify(keys));
+
 const port = 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
