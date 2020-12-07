@@ -7,6 +7,9 @@ const app = express();
 // Path to localhost
 app.use(express.static(path.join(__dirname, "client")));
 
+// parse JSON string to object
+app.use(bodyParser.json());
+
 // const keys = webpush.generateVAPIDKeys();
 // console.log(JSON.stringify(keys));
 
@@ -26,11 +29,11 @@ app.post("/subscribe", (req, res) => {
 
     // get subscription object
     const subscription = req.body;  
-    res.status(200).json({});
+    res.status(201).json({}); // created
   
     // create payload
-    const payload = JSON.stringify({ title: "Nur ein Test" });
-  
+    const payload = JSON.stringify({ title: "Nur ein Test" , body: `created by node.js on ${new Date().toLocaleTimeString()}`});
+  console.log(JSON.stringify(subscription));
     // send notification to subscription
     webpush
       .sendNotification(subscription, payload)
