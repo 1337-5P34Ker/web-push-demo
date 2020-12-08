@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.ronami.de/favicon.ico" />
 <head>
   <meta charset="UTF-8">
   <title>Push notifications demo</title>
 </head>
 <body>
+  <textarea id="text"></textarea>
+  <button onclick="sendNotification(document.getElementById('text').value)">Send notification</button>
   <h1>Notifications demo</h1>
   <script src="client.js"></script>
 </body>

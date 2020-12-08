@@ -28,15 +28,15 @@ webpush.setVapidDetails(
 app.post("/subscribe", (req, res) => {
 
     // get subscription object
-    const subscription = req.body;  
+    const payload = req.body;  
     res.status(201).json({}); // created
   
     // create payload
-    const payload = JSON.stringify({ title: "Nur ein Test" , body: `created by node.js on ${new Date().toLocaleTimeString()}`});
-  console.log(JSON.stringify(subscription));
+    const notification = JSON.stringify({ title: "Nur ein Test" , body: `Text: ${payload.text}`});
+  console.log(JSON.stringify(payload.subscription));
     // send notification to subscription
     webpush
-      .sendNotification(subscription, payload)
+      .sendNotification(payload.subscription, notification)
       .catch(err => console.error(err));
   });
 
