@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
-  <link rel="shortcut icon" type="image/x-icon" href="https://www.ronami.de/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="https://www.ronami.de/favicon.ico" />
+
 <head>
   <meta charset="UTF-8">
   <title>Push notifications demo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
-  <textarea id="text"></textarea>
-  <button onclick="sendNotification(document.getElementById('text').value)">Send notification</button>
-  <h1>Notifications demo</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card m-5 col-md-6">
+        <!-- <h5 class="card-header">Featured</h5> -->
+        <div class="card-body">
+          <h5 class="card-title">Notification message</h5>
+          <p class="card-text">
+            Options for a notification:
+<pre>{
+  body: Your text here,
+  image: "URL here...",
+  icon: ...
+}</pre>
+          </p>
+          <div class="form-group">
+            <label for="text">title:</label>
+            <input type="text" class="form-control" id="title" aria-describedby="textTitle"
+              placeholder="Enter title for notification">
+            <small id="textTitle" class="form-text text-muted">Text will appear in the notification's title.</small>
+          </div>
+          <div class="form-group">
+            <label for="text">body:</label>
+            <input type="text" class="form-control" id="text" aria-describedby="textHelp"
+              placeholder="Enter text for notification">
+            <small id="textHelp" class="form-text text-muted">Text will appear in the notification's body.</small>
+          </div>
+          <button class="btn btn-outline-primary" onclick="sendNotification(document.getElementById('title').value, document.getElementById('text').value)">Send
+            notification</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="client.js"></script>
 </body>
+
 </html>

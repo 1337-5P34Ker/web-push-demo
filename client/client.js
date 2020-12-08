@@ -4,14 +4,15 @@ const publicVapidKey =
   "BPLqYpWFeHXtYKlGC9RR0T9pCPVqrb9_BFyNAuaGruIyk8Gsuuxn_H1Z7G6Rl_in-XalRTWULkZFrde7JJPua6o";
 
 
-function sendNotification(text){
-  // Check for service worker in navigator
+function sendNotification(title, body){
+  // Check for service worker in navigator  
 if ("serviceWorker" in navigator) {
-  send(text).catch(err => console.error(err));
+  const message = {title: title, body: body};
+  send(message).catch(err => console.error(err));
 }
 
 // Register SW, Register Push, Send Push
-async function send(text) {
+async function send(message) {
   // Register Service Worker
   console.log("Registering service worker...");
   const register = await navigator.serviceWorker.register("/worker.js", {
@@ -28,7 +29,8 @@ async function send(text) {
   console.log("Push successfully registered...");
 
   // Send a Push notification
-  const payload = {text: text, subscription:subscription};
+
+  const payload = {message, subscription};
   console.log("Sending push...");
   await fetch("/subscribe", {
     method: "POST",

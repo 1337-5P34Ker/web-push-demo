@@ -30,9 +30,12 @@ app.post("/subscribe", (req, res) => {
     // get subscription object
     const payload = req.body;  
     res.status(201).json({}); // created
+    console.log( payload.message);
+    const body = payload.message.body;
+    const title = payload.message.title;
   
     // create payload
-    const notification = JSON.stringify({ title: "Nur ein Test" , body: `Text: ${payload.text}`});
+    const notification = JSON.stringify({ title: title , body: body});
   console.log(JSON.stringify(payload.subscription));
     // send notification to subscription
     webpush
